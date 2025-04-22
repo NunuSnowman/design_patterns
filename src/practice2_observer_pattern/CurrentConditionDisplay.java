@@ -8,11 +8,22 @@ public class CurrentConditionDisplay implements Observer, DisplayElement {
     private float humidity;
     private Subject weatherData;
 
+    /**
+     * The constructor is passed the weatherData object (the Subject)
+     * and we use it to register the display of an observer
+     * @param weatherData
+     */
     public CurrentConditionDisplay(Subject weatherData) {
         this.weatherData = weatherData;
         weatherData.registerObserver(this);
     }
 
+    /**
+     * When update is called, we save the temp and humidity and call display()
+     * @param temp
+     * @param humidity
+     * @param pressure
+     */
     @Override
     public void update(float temp, float humidity, float pressure) {
         this.temperature = temp;
@@ -20,6 +31,9 @@ public class CurrentConditionDisplay implements Observer, DisplayElement {
         display();
     }
 
+    /**
+     * The display just prints out the most recent temp and humidity
+     */
     @Override
     public void display() {
         // display the current measurements
